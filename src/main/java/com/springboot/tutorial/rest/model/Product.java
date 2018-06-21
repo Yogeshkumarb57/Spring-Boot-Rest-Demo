@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
+@ApiModel(description="Product model")
 @Entity
 @Data
 public class Product {

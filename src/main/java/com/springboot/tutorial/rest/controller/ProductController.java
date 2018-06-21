@@ -1,7 +1,10 @@
 package com.springboot.tutorial.rest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +27,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@ApiOperation(value="Get product service",notes="get product by product id.")
+	@ApiOperation(value="Get product service",notes="Get product by product id.")
 	@ApiResponses(value= {
 			@ApiResponse(code=400,message="Request is not proper, check details."),
 			@ApiResponse(code=500,message="Server is unable process request.")
@@ -34,6 +37,35 @@ public class ProductController {
 			@ApiParam(required=true,example="1")
 			@PathVariable("productId") Integer productId) {
 		return productService.getProduct(productId);
+	}
+	
+	@ApiOperation(value="Get all products service",notes="Get all products.")
+	@ApiResponses(value= {
+			@ApiResponse(code=500,message="Server is unable process request.")
+	})
+	@RequestMapping(method=RequestMethod.GET,value="/")
+	public List<Product> getAllProducts() {
+		return productService.getAllProducts();
+	}
+	
+	
+	@ApiOperation(value="Add product service",notes="Add product by providing product detail.")
+	@ApiResponses(value= {
+			@ApiResponse(code=500,message="Server is unable process request.")
+	})
+	@RequestMapping(method=RequestMethod.POST,value="/")
+	public Product addProduct(@RequestBody Product product) {
+		return productService.saveProduct(product);
+	}
+	
+	@ApiOperation(value="Delete product service",notes="Delete product by product id.")
+	@ApiResponses(value= {
+			@ApiResponse(code=500,message="Server is unable process request.")
+	})
+	@RequestMapping(method=RequestMethod.DELETE,value="/{productId}")
+	public Boolean deleteProduct(@ApiParam(required=true,example="1")
+	@PathVariable("productId") Integer productId) {
+		return productService.deleteProduct(productId);
 	}
 	
 	
