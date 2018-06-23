@@ -67,7 +67,6 @@ public class ProductController {
 	@PathVariable("productId") Integer productId) {
 		return productService.deleteProduct(productId);
 	}
-	
-	
+
 }
 
