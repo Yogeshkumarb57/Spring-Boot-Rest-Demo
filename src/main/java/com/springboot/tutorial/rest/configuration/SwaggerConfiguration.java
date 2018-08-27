@@ -21,10 +21,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
 
 	public static final Contact DEFAULT_CONTACT = new Contact(
-		      "Yogeshkumar Savita", "", "yogeshkumarb57@gmail.com");
+		      "Yogeshkumar", "", "yogeshkumarb57@gmail.com");
 		  
 		  public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
-		      "Spring Boot Rest API with Spring Data JPA", "Spring Boot Rest API demo with Spring Data JPA using H2 database", "1.0",
+		      "Spring Boot Rest API with Data JPA", "Spring Boot Rest API demo with Data JPA[H2 database]", "1.0",
 		      "urn:tos", DEFAULT_CONTACT, 
 		      "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0");
 

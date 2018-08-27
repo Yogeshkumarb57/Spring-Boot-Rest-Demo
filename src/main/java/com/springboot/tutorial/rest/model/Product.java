@@ -5,19 +5,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description="Product model")
 @Entity
 @Data
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@ApiModelProperty(notes = "Database generated product id",readOnly = true)
 	private Integer productId;
+	@ApiModelProperty(notes = "Product name")
 	private String productName;
+	@ApiModelProperty(notes = "Product description")
 	private String productDescription;
+	@ApiModelProperty(notes = "Product price")
 	private Double productPrice;
 	
 	

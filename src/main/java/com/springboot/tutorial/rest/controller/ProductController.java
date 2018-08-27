@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 
-@Api(value="Products Rest Service",description="Products rest services")
+@Api(value="Products Rest Service",description="Products rest service")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -27,21 +27,21 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@ApiOperation(value="Get product service",notes="Get product by product id.")
+	@ApiOperation(value="Get product service",notes="Gets product by product id.")
 	@ApiResponses(value= {
-			@ApiResponse(code=400,message="Request is not proper, check details."),
-			@ApiResponse(code=500,message="Server is unable process request.")
+			@ApiResponse(code=400,message="Invalid request, check request."),
+			@ApiResponse(code=500,message="Server is unable to process request.")
 	})
 	@RequestMapping(method=RequestMethod.GET,value="/{productId}")
 	public Product getProduct(
-			@ApiParam(required=true,example="1")
+			@ApiParam(required=true,example="1",defaultValue = "1")
 			@PathVariable("productId") Integer productId) {
 		return productService.getProduct(productId);
 	}
 	
-	@ApiOperation(value="Get all products service",notes="Get all products.")
+	@ApiOperation(value="Get all products service",notes="Gets all products.")
 	@ApiResponses(value= {
-			@ApiResponse(code=500,message="Server is unable process request.")
+			@ApiResponse(code=500,message="Server is unable to process request.")
 	})
 	@RequestMapping(method=RequestMethod.GET,value="/")
 	public List<Product> getAllProducts() {
@@ -49,18 +49,20 @@ public class ProductController {
 	}
 	
 	
-	@ApiOperation(value="Add product service",notes="Add product by providing product detail.")
+	@ApiOperation(value="Add product service",notes="Adds product from product detail.")
 	@ApiResponses(value= {
-			@ApiResponse(code=500,message="Server is unable process request.")
+			@ApiResponse(code=500,message="Server is unable to process request.")
 	})
 	@RequestMapping(method=RequestMethod.POST,value="/")
-	public Product addProduct(@RequestBody Product product) {
+	public Product addProduct(
+			@ApiParam(required=true)
+			@RequestBody Product product) {
 		return productService.saveProduct(product);
 	}
 	
-	@ApiOperation(value="Delete product service",notes="Delete product by product id.")
+	@ApiOperation(value="Delete product service",notes="Deletes product by product id.")
 	@ApiResponses(value= {
-			@ApiResponse(code=500,message="Server is unable process request.")
+			@ApiResponse(code=500,message="Server is unable to process request.")
 	})
 	@RequestMapping(method=RequestMethod.DELETE,value="/{productId}")
 	public Boolean deleteProduct(@ApiParam(required=true,example="1")
