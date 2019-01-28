@@ -15,6 +15,11 @@ public class HomeController {
 		req.setAttribute("pageName", "HOME PAGE JSP");
 		return "home.jsp";
 	}
-	
+
+	@RequestMapping(method=RequestMethod.GET,value="/display")
+	public String getDisplay(HttpServletRequest req) {
+
+		return "display";
+	}
 }
 
