@@ -13,7 +13,7 @@ public class HomeController {
 	public String getHome(HttpServletRequest req) {
 		
 		req.setAttribute("pageName", "HOME PAGE JSP");
-		return "home.jsp";
+		return "home";
 	}
 	
 }

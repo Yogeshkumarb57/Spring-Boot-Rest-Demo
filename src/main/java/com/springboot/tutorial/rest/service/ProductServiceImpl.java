@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAllProducts() {
 		
-		System.out.println("GET PRODUCT by name:::");
-		System.out.println(productRepository.findByProductName("Mobile"));
+		//System.out.println("GET PRODUCT by name:::");
+		//System.out.println(productRepository.findByProductName("Mobile"));
 		
 		return productRepository.findAll();
 	}
@@ -35,8 +35,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public boolean deleteProduct(Integer id) {
-		productRepository.delete(productRepository.findById(id).get());
-		return true;
+
+		if (productRepository.findById(id).isPresent()){
+			productRepository.delete(productRepository.findById(id).get());
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
